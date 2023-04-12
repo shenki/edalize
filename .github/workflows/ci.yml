@@ -33,16 +33,20 @@ jobs:
       fail-fast: false
       matrix:
         os:
-        - { icon: 🐧, name: ubuntu }
+        - { icon: 🐧, name: ubuntu-20.04 }
         #- { icon: 🍎, name: macos }
         #- { icon: 🧊, name: windows }
         pyver:
+        - '3.6'
         - '3.7'
         - '3.8'
         - '3.9'
         - '3.10'
         - '3.11'
-    runs-on: ${{ matrix.os.name }}-latest
+        include:
+          - pyver: 3.6
+            os.name: ubuntu-20.04
+    runs-on: ${{ matrix.os.name || 'ubuntu-latest' }}
     name: ${{ matrix.os.icon }} ${{ matrix.os.name }} | ${{ matrix.pyver }}
     steps:
 

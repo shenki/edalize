@@ -132,7 +132,8 @@ class Filelist(Edatool):
             re.VERBOSE,
         )
 
-        if match := regex.match(outpath):
+        match = regex.match(outpath)
+        if match:
             envvar = match.group(2)
             therest = match.group(3)
             try:
